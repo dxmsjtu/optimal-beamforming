@@ -4,8 +4,8 @@ function wZFBF = functionZFBF(H,D)
 %
 %The references to definitions and equations refer to the following book:
 %
-%Emil Björnson, Eduard Jorswieck, “Optimal Resource Allocation in
-%Coordinated Multi-Cell Systems,” Foundations and Trends in Communications
+%[1] Emil Bjï¿½rnson, Eduard Jorswieck, ï¿½Optimal Resource Allocation in
+%Coordinated Multi-Cell Systems,ï¿½ Foundations and Trends in Communications
 %and Information Theory, vol. 9, no. 2-3, pp. 113-381, 2013.
 %
 %This is version 1.1. (Last edited: 2014-03-26)
@@ -22,25 +22,18 @@ function wZFBF = functionZFBF(H,D)
 %
 %OUTPUT:
 %wZFBF = Kt*Nt x Kr matrix with normalized ZFBF
-
-
-
-
 %Number of users
 Kr = size(H,1);
-
 %Total number of antennas
 N = size(H,2);
-
 %If D matrix is not provided, all antennas can transmit to everyone
 if nargin<2
     D = repmat( eye(N), [1 1 Kr]);
 end
-
 %Pre-allocation of MRT beamforming
 wZFBF = zeros(size(H'));
 
-%Computation of ZFBF, based on Definition 3.4
+%Computation of ZFBF, based on Definition 3.4 (i.e., (3.29) of [1])
 for k = 1:Kr
     effectivechannel = (H*D(:,:,k))'; %Effective channels
     channelinversion = effectivechannel/(effectivechannel'*effectivechannel); %Compute zero-forcing based on channel inversion

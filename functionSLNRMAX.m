@@ -6,8 +6,8 @@ function wSLNRMAX = functionSLNRMAX(H,eta,D)
 %
 %The references to definitions and equations refer to the following book:
 %
-%Emil Björnson, Eduard Jorswieck, “Optimal Resource Allocation in
-%Coordinated Multi-Cell Systems,” Foundations and Trends in Communications
+%Emil Bjï¿½rnson, Eduard Jorswieck, ï¿½Optimal Resource Allocation in
+%Coordinated Multi-Cell Systems,ï¿½ Foundations and Trends in Communications
 %and Information Theory, vol. 9, no. 2-3, pp. 113-381, 2013.
 %
 %This is version 1.1. (Last edited: 2014-03-26)
@@ -48,7 +48,7 @@ end
 wSLNRMAX = zeros(size(H'));
 
 %Computation of SLNR-MAX, based on Definition 3.5
-for k = 1:Kr
+for k = 1:Kr 
     effectivechannel = (H*D(:,:,k))'; %Effective channels
     projectedchannel = (eye(N)/eta(k)+effectivechannel*effectivechannel')\effectivechannel(:,k); %Compute zero-forcing based on channel inversion
     wSLNRMAX(:,k) = projectedchannel/norm(projectedchannel);  %Normalization of zero-forcing direction
